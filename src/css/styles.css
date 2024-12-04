@@ -1,0 +1,682 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #B48B5D;
+    margin: 0;
+    padding: 5px;
+}
+
+h1 {
+    color: #3f2832;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    margin: 5px auto;
+    font-size: 1em;
+}
+
+.page-header {
+    border: 2px solid #3f2832;
+    background-color: #995750;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.header-top {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zoom-effect {
+    transition: transform 0.3s ease;
+}
+
+.zoom-effect:hover {
+    transform: scale(1.1);
+}
+
+.npc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0;
+    background-color: #ffd4a3;
+    font-size: 0.7em;
+}
+
+.npc-table th,
+.npc-table td {
+    border: 1px solid #3f2832;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Neucha', cursive;
+    box-sizing: border-box;
+}
+
+.npc-table th {
+    background-color: #C9A77D;
+    color: #3f2832;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.7em;
+}
+
+.npc-table tr:nth-child(even) {
+    background-color: #FFE1B6;
+}
+
+.npc-table td.best-value {
+    background-color: #90EE90;
+    font-weight: bold;
+}
+
+.npc-table td.low-value {
+    background-color: #FFB6B6;
+}
+
+.npc-name {
+    font-weight: bold;
+    color: #3f2832;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1em;
+}
+
+.editable {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.2em;
+}
+
+.editable:hover {
+    background-color: #FFE1B6;
+}
+
+.cell-input {
+    width: 90%;
+    padding: 5px;
+    border: 2px solid #3f2832;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Neucha', cursive;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.cell-input:focus {
+    outline: none;
+    border-color: #995750;
+}
+
+.npc-table td.value-highest {
+    background-color: #2E7D32;
+    font-weight: bold;
+}
+
+.npc-table td.value-high {
+    background-color: #4CAF50;
+    font-weight: bold;
+}
+
+.npc-table td.value-medium {
+    background-color: #FFEB3B;
+}
+
+.npc-table td.value-low {
+    background-color: #FFA726;
+}
+
+.npc-table td.value-lowest {
+    background-color: #EF5350;
+}
+
+.delete-btn {
+    background: #995750;
+    border: none;
+    border-radius: 4px;
+    color: #ffd4a3;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 2px 6px;
+    transition: all 0.3s;
+    margin-left: 8px;
+}
+
+.delete-btn:hover {
+    background: #ff0000;
+    color: white;
+    transform: scale(1.1);
+}
+
+.header-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.npc-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px;
+    white-space: nowrap;
+    font-size: 0.9em;
+}
+
+.npc-cell span {
+    font-size: 1.15em;
+    padding-left: 5px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .page-header {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        margin: 15px auto;
+    }
+
+    .content-container {
+        margin-top: 15px;
+    }
+
+    .ranking-content {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    .npc-table {
+        font-size: 0.9em;
+    }
+
+    .npc-table th,
+    .npc-table td {
+        border: 1px solid #3f2832;
+        padding: 8px 4px;
+    }
+
+    .npc-table th {
+        font-size: 0.6em;
+    }
+
+    /* Adjust button layout in mobile */
+    .delete-btn {
+        padding: 1px 4px;
+        font-size: 0.9em;
+        margin-left: 4px;
+    }
+
+    /* Adjust input in mobile */
+    .cell-input {
+        width: 95%;
+        padding: 4px;
+        font-size: 0.9em;
+    }
+
+    /* Improve cell spacing in mobile */
+    .header-cell {
+        gap: 2px;
+        padding: 3px;
+        font-size: 0.9em;
+    }
+
+    .npc-table th {
+        padding: 4px 2px;
+        white-space: nowrap;
+    }
+
+    /* Adjust font size to fit better */
+    .npc-table th span {
+        font-size: 0.8em;
+    }
+
+    .npc-cell {
+        padding: 3px;
+        font-size: 1.1em;
+    }
+
+    .npc-table td:first-child {
+        padding: 4px 2px;
+        white-space: nowrap;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .content-container {
+        padding: 5px;
+        margin: 5px 2px;
+        border-radius: 8px;
+        width: auto;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .ranking-content {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Ajuste do botão Clear All */
+    .clear-all-btn {
+        padding: 2px 6px;
+        font-size: 0.55em;
+        margin: 2px;
+        float: right;
+    }
+
+    .npc-table {
+        width: 100%;
+        font-size: 0.72em;
+        table-layout: fixed;
+        margin: 5px 0;
+    }
+
+    /* Ajuste do header */
+    .header-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+        padding: 1px;
+    }
+
+    /* Reduzir texto do servidor */
+    .header-cell span {
+        font-size: 0.08em;
+        display: block;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Ajuste específico para o título NPC */
+    .npc-table th:first-child {
+        font-size: 0.3em;
+        font-family: Arial, sans-serif;
+        padding: 2px;
+    }
+
+    /* Ajuste dos botões X no header */
+    .header-cell .delete-btn,
+    .npc-cell .delete-btn {
+        padding: 1px 3px;
+        font-size: 0.7em;
+        min-width: 12px;
+        height: 12px;
+        line-height: 12px;
+        margin-left: 2px;
+    }
+
+    /* Ajuste das células NPC */
+    .npc-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1px;
+        font-size: 1.15em;
+    }
+
+    /* Ajuste específico para o texto dos NPCs */
+    .npc-cell span {
+        font-size: 1.15em;
+        padding-left: 4px;
+    }
+
+    /* Distribuição das colunas */
+    .npc-table th:first-child,
+    .npc-table td:first-child {
+        width: 30%;
+    }
+
+    .npc-table th:not(:first-child),
+    .npc-table td:not(:first-child) {
+        width: 23.33%;
+    }
+}
+
+/* Adjustments for landscape orientation on mobile devices */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1em;
+        margin: 10px 0;
+    }
+
+    .ranking-content {
+        margin: 5px auto;
+    }
+
+    .npc-table {
+        margin: 10px 0;
+    }
+}
+
+/* Prevent unwanted zoom on inputs in iOS */
+@media screen and (max-width: 768px) {
+    input[type="number"] {
+        font-size: 16px !important;
+    }
+}
+
+/* Adjustments for smooth scrolling */
+.ranking-content {
+    scrollbar-width: thin;
+    scrollbar-color: #995750 #ffd4a3;
+}
+
+.ranking-content::-webkit-scrollbar {
+    height: 6px;
+}
+
+.ranking-content::-webkit-scrollbar-track {
+    background: #ffd4a3;
+}
+
+.ranking-content::-webkit-scrollbar-thumb {
+    background-color: #995750;
+    border-radius: 3px;
+}
+
+/* Style for total row */
+.npc-table tr:last-child td {
+    border-top: 2px solid #3f2832;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.7em;
+    color: #3f2832;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .npc-table tr:last-child td {
+        font-size: 0.6em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .npc-table tr:last-child td {
+        font-size: 0.5em;
+    }
+    
+    /* Keep TOTAL cell fixed too */
+    .npc-table tr:last-child td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #C9A77D;
+        z-index: 1;
+    }
+}
+
+.stats-section {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #C9A77D;
+    border: 2px solid #3f2832;
+    border-radius: 5px;
+}
+
+.stat-item {
+    margin: 5px 0;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.6em;
+    color: #3f2832;
+}
+
+.stat-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.stat-value {
+    color: #2E7D32;
+}
+
+/* Mobile adjustment */
+@media screen and (max-width: 768px) {
+    .stats-section {
+        padding: 10px;
+    }
+
+    .stat-item {
+        font-size: 0.7em;
+    }
+}
+
+.clear-all-btn {
+    margin: 10px 0;
+    padding: 5px 15px;
+    font-size: 0.9em;
+    float: right;
+    background: #EF5350;
+    border: 2px solid #3f2832;
+    color: white;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.7em;
+}
+
+.clear-all-btn:hover {
+    background: #ff0000;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Mobile adjustment */
+@media screen and (max-width: 768px) {
+    .clear-all-btn {
+        padding: 4px 12px;
+        font-size: 0.6em;
+    }
+}
+
+.content-container {
+    background-color: #995750;
+    border: 2px solid #3f2832;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px auto;
+    max-width: 600px;
+}
+
+/* Mobile adjustment */
+@media screen and (max-width: 768px) {
+    .content-container {
+        padding: 10px;
+        margin: 10px auto;
+    }
+}
+
+/* Ajustes específicos para telas menores */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .content-container {
+        padding: 5px;
+        margin: 5px 2px;
+        border-radius: 8px;
+        width: auto;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .ranking-content {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Ajuste do botão Clear All */
+    .clear-all-btn {
+        padding: 2px 6px;
+        font-size: 0.55em;
+        margin: 2px;
+        float: right;
+    }
+
+    .npc-table {
+        width: 100%;
+        font-size: 0.72em;
+        table-layout: fixed;
+        margin: 5px 0;
+    }
+
+    /* Ajuste do header */
+    .header-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+        padding: 1px;
+    }
+
+    /* Reduzir texto do servidor */
+    .header-cell span {
+        font-size: 0.08em;
+        display: block;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Ajuste específico para o título NPC */
+    .npc-table th:first-child {
+        font-size: 0.3em;
+        font-family: Arial, sans-serif;
+        padding: 2px;
+    }
+
+    /* Ajuste dos botões X no header */
+    .header-cell .delete-btn,
+    .npc-cell .delete-btn {
+        padding: 1px 3px;
+        font-size: 0.7em;
+        min-width: 12px;
+        height: 12px;
+        line-height: 12px;
+        margin-left: 2px;
+    }
+
+    /* Ajuste das células NPC */
+    .npc-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1px;
+        font-size: 1.15em;
+    }
+
+    /* Ajuste específico para o texto dos NPCs */
+    .npc-cell span {
+        font-size: 1.15em;
+        padding-left: 4px;
+    }
+
+    /* Distribuição das colunas */
+    .npc-table th:first-child,
+    .npc-table td:first-child {
+        width: 30%;
+    }
+
+    .npc-table th:not(:first-child),
+    .npc-table td:not(:first-child) {
+        width: 23.33%;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 360px) {
+    body {
+        padding: 2px;
+    }
+
+    .content-container {
+        padding: 3px;
+        margin: 2px 1px;
+    }
+
+    .header-cell span {
+        font-size: 0.06em;
+        font-family: Arial, sans-serif;
+    }
+
+    .npc-table th:first-child {
+        font-size: 0.25em;
+        font-family: Arial, sans-serif;
+    }
+
+    .npc-cell {
+        font-size: 0.96em;
+    }
+
+    .npc-cell span {
+        font-size: 0.96em;
+        padding-left: 3px;
+    }
+}
+
+/* Ajustes para a seção de estatísticas no mobile */
+@media screen and (max-width: 480px) {
+    .stats-section {
+        margin-top: 10px;
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .stat-item {
+        margin: 5px 0;
+        font-family: "Press Start 2P", system-ui;
+        font-size: 0.45em; /* Reduzido para caber em uma linha */
+        color: #3f2832;
+        white-space: nowrap; /* Previne quebra de linha */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .stat-label {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .stat-value {
+        color: #2E7D32;
+    }
+}
+
+/* Ajustes para telas ainda menores */
+@media screen and (max-width: 360px) {
+    .stats-section {
+        padding: 6px;
+    }
+
+    .stat-item {
+        font-size: 0.4em; /* Ainda menor para telas muito pequenas */
+        gap: 3px;
+    }
+}
