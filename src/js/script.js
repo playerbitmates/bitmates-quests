@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Calculate best value for each NPC
         const npcs = [
-            "Wilson", "Elda", "Chop", "Pascal", "Yatin", "Rusty",
+            "Wilson", "Elda", "Chop", "Pascal", "Yatiri", "Rusty",
             "Benoit", "Sage", "Tinker", "Blooby", "King Leo", "Milton"
         ];
 
